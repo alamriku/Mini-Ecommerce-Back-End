@@ -12,4 +12,9 @@ class OrderStatus
     const SHIPPED = 20;
     const DELIVERED = 25;
     const PENDING = 30;
+
+    public static function getStatus($status)
+    {
+        return constant('Self::'. $status);
+    }
 }

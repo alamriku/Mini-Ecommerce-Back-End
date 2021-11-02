@@ -54,4 +54,12 @@ class ProductService
         $model->delete();
     }
 
+    public function updateQty($order): void
+    {
+        $product = $order->product()->first();
+        $updatedQty = $product->qty - $order->qty;
+        $product->qty = $updatedQty;
+        $product->save();
+    }
+
 }

@@ -21,9 +21,10 @@ Route::group([
     Route::post('login', [\App\Http\Controllers\Auth\AuthController::class,'login']);
     Route::post('logout', [\App\Http\Controllers\Auth\AuthController::class,'logout']);
 });
-Route::group(['middleware'=>'auth:api'], function(){
+Route::middleware(['auth:api','admin'])->group(function(){
     Route::apiResource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::get('orders', [\App\Http\Controllers\Admin\OrderController::class,'index']);
+    Route::put('orders/{order}', [\App\Http\Controllers\Admin\OrderController::class,'updateStatus']);
 });
 //Route::get('users', [\App\Http\Controllers\Admin\UserController::class,'index'])->name('users.index')->middleware('auth:api');
 
